@@ -7,6 +7,7 @@ Given a input DB, mining sequential Pattern from the input DB with user-defined 
 - [x] The first number of each sequence is the sequence ID
 - [x] The pair of number such as 11 166 is the transaction time and the item ID. Transaction time just shows the order of transactions.
 - [x] The first sequence can be transfer to the following format
+  
   ◦ (166 4103 8715) (4103 8715)(166 3704 6568 8375 8715)(166 9406)
   
 
@@ -18,17 +19,19 @@ from collections import Counter
 import pandas as pd
 ```
 
-## 2.Run Apriori Algorithm
+## 2.Run AprioriAll Algorithm
 
 **Part 1 : Function**
 - [x] Calculate support
-- [x] Calculate confidence
+- [x] Litemset Phase
+- [x] Transformation Phase
+- [x] Maximal phase
 - [x] Answer form - here you can change the location of output file
 - [x] Main : Apriori algorithm
 
-**Part 2 : Apriori Algorithm**
+**Part 2 : AprioriAll  Algorithm**
 * Input file preprocessing
-  * Read input : [Input](https://github.com/podo47/Apriori-Algorithm/blob/main/input.txt)
+  * Read input : [Input](https://github.com/podo47/Sequential-Pattern-Mining-AprioriAll/blob/main/seqdata.dat.txt)
   
   
   ``` python
@@ -39,35 +42,32 @@ import pandas as pd
   
 * Output 
 ``` python
-test = Apriori() # Please enter min support and min confidence 
+test = Sequential() # Please enter min support
 ```
 ## 3. Output:"output.csv"
 
-Example : [Output](https://github.com/podo47/Apriori-Algorithm/blob/main/output.csv)
-* min support : 0.001
-* min confidence : 0.05
+Example : [Output](https://github.com/podo47/Sequential-Pattern-Mining-AprioriAll/blob/main/output.csv)
+* min support : 0.01
 
-| Rule:left       | → | Rule:right | Confidence           |
-|-----------------|---|------------|----------------------|
-| 32              | → | 38         | 0.18678710358014108  |
-| 32              | → | 39         | 0.5574602755983386   |
-| 32              | → | 41         | 0.2107206435023406   |
-| 32              | → | 48         | 0.5297026438979363   |
-| ...             | → | ...        | ... |
-| "{48, 41, 38}"  | → | 39         | 0.8386689132266217   |
-| "{48, 170, 38}" | → | 39         | 0.7756827048114434   |
-| "{48, 110, 38}" | → | 39         | 0.7575312270389419   |
-| "{48, 41, 39}"  | → | 32         | 0.22345913657344557  |
-| "{48, 41, 39}"  | → | 38         | 0.2702959543850122   |
-| "{48, 170, 39}" | → | 38         | 0.9892205638474295   |
-| "{48, 110, 39}" | → | 38         | 0.9942140790742526   |
+| pattern                                                                                  | → | Support |
+|------------------------------------------------------------------------------------------|---|---------|
+| "({3488}, {1566}, {3488, 1566})"                                                         | → | 326     |
+| "({5447}, {5493}, {5493, 5447})"                                                         | → | 406     |
+| "({7160}, {6549}, {7160, 6549})"                                                         | → | 240     |
+| "({552}, {4811}, {552, 4811})"                                                           | → | 348     |
+| "({7125}, {2240, 7125}, {2240})"                                                         | → | 318     |
+| "({8208, 7775}, {7775}, {8208})"                                                         | → | 255     |
+| "({1946, 4683}, {1946}, {4683})"                                                         | → | 262     |
+| "({8969, 2652}, {8969}, {2652})"                                                         | → | 349     |
+| "({2722, 1503}, {2722}, {1503})"                                                         | → | 264     |
+| "({6312, 1807}, {6312}, {1807})"                                                         | → | 297     |
+| "({7088, 9126}, {7088}, {9126})"                                                         | → | 566     |
+| "({3308}, {5343}, {3308, 5343}, {7931, 5343}, {7931, 3308}, {7931, 3308, 5343}, {7931})" | → | 249     |
+
 
 
 ## 3. Reference
-[1] Apriori Algorithm from Scratch
+[1] 序列模式挖掘-AprioriAll算法详解(附python源码)
 
-https://www.kaggle.com/code/bismakhan08/apriori-algorithm-from-scratch/notebook
+https://www.tanglei.name/blog/aprioriall-algorithm-in-python.html
 
-[2] Apriori Algorithm from Scratch - Python
-
-http://www.vucreations.com/articles/apriori-algorithm-from-scratch-Python.html
